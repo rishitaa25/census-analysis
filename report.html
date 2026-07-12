@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Rishita Kollu">
+<meta name="dcterms.date" content="2025-05-29">
+
+<title>Census Training Report</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="censusblog_files/libs/clipboard/clipboard.min.js"></script>
+<script src="censusblog_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="censusblog_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="censusblog_files/libs/quarto-html/popper.min.js"></script>
+<script src="censusblog_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="censusblog_files/libs/quarto-html/anchor.min.js"></script>
+<link href="censusblog_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="censusblog_files/libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="censusblog_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="censusblog_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="censusblog_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="censusblog_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="censusblog_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="censusblog_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#research-question" id="toc-research-question" class="nav-link active" data-scroll-target="#research-question">Research Question</a></li>
+  <li><a href="#why-internet-access-matters" id="toc-why-internet-access-matters" class="nav-link" data-scroll-target="#why-internet-access-matters">Why Internet Access Matters</a>
+  <ul class="collapse">
+  <li><a href="#major-incidents-where-lack-of-internet-caused-harm" id="toc-major-incidents-where-lack-of-internet-caused-harm" class="nav-link" data-scroll-target="#major-incidents-where-lack-of-internet-caused-harm">Major Incidents Where Lack of Internet Caused Harm</a></li>
+  </ul></li>
+  <li><a href="#about-the-data-acs-5-year-estimates" id="toc-about-the-data-acs-5-year-estimates" class="nav-link" data-scroll-target="#about-the-data-acs-5-year-estimates">About the Data: ACS 5-Year Estimates</a>
+  <ul class="collapse">
+  <li><a href="#what-does-the-census-ask" id="toc-what-does-the-census-ask" class="nav-link" data-scroll-target="#what-does-the-census-ask">What Does the Census Ask?</a></li>
+  </ul></li>
+  <li><a href="#explore-the-map" id="toc-explore-the-map" class="nav-link" data-scroll-target="#explore-the-map">Explore the Map</a>
+  <ul class="collapse">
+  <li><a href="#key-mapping-insights" id="toc-key-mapping-insights" class="nav-link" data-scroll-target="#key-mapping-insights">Key Mapping Insights</a></li>
+  </ul></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data Visualization</a>
+  <ul class="collapse">
+  <li><a href="#internet-access-over-time-20172022" id="toc-internet-access-over-time-20172022" class="nav-link" data-scroll-target="#internet-access-over-time-20172022">Internet Access Over Time (2017–2022)</a></li>
+  <li><a href="#state-by-state-internet-gaps-2022" id="toc-state-by-state-internet-gaps-2022" class="nav-link" data-scroll-target="#state-by-state-internet-gaps-2022">State-by-State Internet Gaps (2022)</a></li>
+  </ul></li>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis">Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#surprising-patterns-in-high-income-regions" id="toc-surprising-patterns-in-high-income-regions" class="nav-link" data-scroll-target="#surprising-patterns-in-high-income-regions">Surprising Patterns in High-Income Regions</a></li>
+  <li><a href="#plausible-reasons-behind-digital-exclusion" id="toc-plausible-reasons-behind-digital-exclusion" class="nav-link" data-scroll-target="#plausible-reasons-behind-digital-exclusion">Plausible Reasons Behind Digital Exclusion</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#further-questions" id="toc-further-questions" class="nav-link" data-scroll-target="#further-questions">Further Questions</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Census Training Report</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Rishita Kollu </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 29, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="research-question" class="level2">
+<h2 class="anchored" data-anchor-id="research-question">Research Question</h2>
+<p><strong>How does internet access vary across the United States, and which regions, despite high incomes or urban settings, still experience significant digital exclusion?</strong></p>
+<hr>
+</section>
+<section id="why-internet-access-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-internet-access-matters">Why Internet Access Matters</h2>
+<p>Yes, in a world where the absence of internet can ground airlines, freeze Wall Street, or halt emergency services — digital access is not just a convenience, it’s a necessity.</p>
+<p>Across the globe and right here in the U.S., there have been real moments where the internet’s absence caused chaos, economic loss, and even put lives at risk:</p>
+<section id="major-incidents-where-lack-of-internet-caused-harm" class="level3">
+<h3 class="anchored" data-anchor-id="major-incidents-where-lack-of-internet-caused-harm">Major Incidents Where Lack of Internet Caused Harm</h3>
+<ol type="1">
+<li><strong>Hurricane Maria – Puerto Rico (2017)</strong>
+<ul>
+<li>The hurricane wiped out power and internet across the island.</li>
+<li>Residents couldn’t call for help, check weather updates, or contact family.</li>
+<li>Rural areas remained disconnected for <strong>months</strong>, delaying aid and recovery.</li>
+</ul></li>
+<li><strong>Comcast/Xfinity Outage – United States (Nov 2021)</strong>
+<ul>
+<li>A major ISP went down across multiple states.</li>
+<li>Millions lost access during work-from-home and virtual school hours.</li>
+<li>Remote workers, students, and telehealth services were all impacted.</li>
+</ul></li>
+<li><strong>Ukraine-Russia War (2022–Present)</strong>
+<ul>
+<li>Cyber and physical attacks damaged internet infrastructure in Ukraine.</li>
+<li>Emergency internet (via <em>SpaceX Starlink</em>) had to be deployed to restore connections.</li>
+</ul></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="about-the-data-acs-5-year-estimates" class="level2">
+<h2 class="anchored" data-anchor-id="about-the-data-acs-5-year-estimates">About the Data: ACS 5-Year Estimates</h2>
+<p>This analysis uses data from the <strong>American Community Survey (ACS) 5-Year Estimates (2018–2022)</strong>.</p>
+<p>Why 5-Year ACS?</p>
+<ul>
+<li>Provides the <strong>most reliable</strong> and stable estimates, especially for small geographies like census tracts and rural counties.</li>
+<li>Covers <strong>broad population segments</strong> over multiple years — helpful in identifying trends.</li>
+<li>Offers <strong>uniform national coverage</strong> useful for consistent comparison across states and counties.</li>
+</ul>
+<blockquote class="blockquote">
+<p><a href="https://www.census.gov/acs/www/about/why-we-ask-each-question/computer/">Why the Census asks about internet access</a></p>
+</blockquote>
+<section id="what-does-the-census-ask" class="level3">
+<h3 class="anchored" data-anchor-id="what-does-the-census-ask">What Does the Census Ask?</h3>
+<p>Below are screenshots of the actual ACS survey questions that ask about computer and internet use. These responses form the basis for the B28002 table used in this analysis.</p>
+<div style="display: flex; gap: 10px; justify-content: center;">
+<p><img src="imgs/1.png" alt="ACS Survey Question 1" style="width: 30%;" class="lightbox"> <img src="imgs/2.png" alt="ACS Survey Question 2" style="width: 30%;" class="lightbox"> <img src="imgs/3.png" alt="ACS Survey Question 3" style="width: 30%;" class="lightbox"></p>
+</div>
+<blockquote class="blockquote">
+<p><em>Images above sourced from <a href="https://www.census.gov">Census.gov</a>.</em></p>
+</blockquote>
+<p><strong>Note:</strong> Broadband, cellular data plans, satellite internet, and other services are grouped together in ACS responses — the survey does not distinguish between speed, type, or quality of access.</p>
+<hr>
+</section>
+</section>
+<section id="explore-the-map" class="level2">
+<h2 class="anchored" data-anchor-id="explore-the-map">Explore the Map</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="imgs/internet_map.html" target="_blank"><img src="imgs/map.png" class="img-fluid figure-img"></a></p>
+<figcaption>Click to explore the interactive map</figcaption>
+</figure>
+</div>
+<p>This map allows users to zoom into any U.S. state and view the percentage of households without internet at both <strong>state</strong> and <strong>county</strong> levels.</p>
+<p><span style="font-size: 0.9em;"> <a href="imgs/help.html" target="blank">Need Help Using the Map?</a> </span> —</p>
+<section id="key-mapping-insights" class="level3">
+<h3 class="anchored" data-anchor-id="key-mapping-insights">Key Mapping Insights</h3>
+<ul>
+<li>States in the <strong>South and West</strong> consistently show higher rates of digital exclusion.</li>
+<li><strong>Mississippi</strong> has the <strong>highest</strong> rate of disconnected households (~21.6%).</li>
+<li><strong>Utah</strong> has the <strong>lowest</strong> (~6.4%).</li>
+<li>Among counties, <strong>Holmes County, MS</strong> tops the list, while <strong>Douglas County, CO</strong> shows near-universal access.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="data-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualization">Data Visualization</h2>
+<section id="internet-access-over-time-20172022" class="level3">
+<h3 class="anchored" data-anchor-id="internet-access-over-time-20172022">Internet Access Over Time (2017–2022)</h3>
+<p>This chart shows how the average percentage of households <strong>without internet access</strong> has changed over time across all 50 U.S. states.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="imgs/graph1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Internet Access Over Time"><img src="imgs/graph1.png" class="img-fluid figure-img" alt="Internet Access Over Time"></a></p>
+<figcaption>Internet Access Over Time</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="state-by-state-internet-gaps-2022" class="level3">
+<h3 class="anchored" data-anchor-id="state-by-state-internet-gaps-2022">State-by-State Internet Gaps (2022)</h3>
+<p>This chart compares states based on their most recent ACS data — labeling each state’s share of households with <strong>no internet access</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="imgs/graph2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="State Comparison"><img src="imgs/graph2.png" class="img-fluid figure-img" alt="State Comparison"></a></p>
+<figcaption>State Comparison</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="data-analysis">Data Analysis</h2>
+<section id="surprising-patterns-in-high-income-regions" class="level3">
+<h3 class="anchored" data-anchor-id="surprising-patterns-in-high-income-regions">Surprising Patterns in High-Income Regions</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="imgs/capture.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Wealthy Counties Without Internet"><img src="imgs/capture.PNG" class="img-fluid figure-img" alt="Wealthy Counties Without Internet"></a></p>
+<figcaption>Wealthy Counties Without Internet</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>Even in some of the wealthiest, most tech-savvy regions in America — from Silicon Valley to downtown Manhattan — a surprising portion of households still lack internet access.</p>
+<p>This isn’t just a rural issue. In places like the <strong>Bronx</strong> and <strong>Brooklyn</strong>, nearly <strong>1 in 5 households</strong> remain offline. Meanwhile, <strong>San Francisco</strong> and <strong>San Jose</strong>, hubs of global tech, show digital exclusion rates above <strong>9%</strong>.</p>
+<p>These gaps may be linked to:</p>
+<ul>
+<li><strong>Language barriers</strong></li>
+<li><strong>Elderly populations</strong></li>
+<li><strong>Housing instability</strong></li>
+<li><strong>Privacy or security concerns</strong></li>
+</ul>
+</blockquote>
+<hr>
+</section>
+<section id="plausible-reasons-behind-digital-exclusion" class="level3">
+<h3 class="anchored" data-anchor-id="plausible-reasons-behind-digital-exclusion">Plausible Reasons Behind Digital Exclusion</h3>
+<ul>
+<li>Affordability and data plan costs</li>
+<li>Lack of devices (computers, routers)</li>
+<li>Elderly residents or digitally averse populations</li>
+<li>Language barriers in immigrant-heavy areas</li>
+<li>Distrust in data security or government programs</li>
+<li>Housing instability or shared living situations</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This analysis highlights that <strong>digital exclusion is a complex, persistent issue</strong>, affecting both rural and urban areas — even in tech-rich or high-income regions.</p>
+<ul>
+<li>While internet access has improved over time, <strong>gaps remain deep and uneven</strong>.</li>
+<li>Mapping reveals <strong>regional clusters</strong> of disconnected communities often masked in national averages.</li>
+<li>Policy efforts need to go beyond laying fiber — tackling affordability, education, and awareness.</li>
+</ul>
+<hr>
+</section>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
+<ul>
+<li>ACS data provides estimates, not exact counts.</li>
+<li>Internet access data doesn’t distinguish <strong>mobile vs broadband vs satellite</strong>.</li>
+<li>Some small counties or tracts had <strong>suppressed or missing values</strong>.</li>
+<li>The map uses static snapshots — it cannot capture <strong>temporal dynamics</strong> or <strong>speed/quality</strong> of access.</li>
+</ul>
+<hr>
+</section>
+<section id="further-questions" class="level2">
+<h2 class="anchored" data-anchor-id="further-questions">Further Questions</h2>
+<ul>
+<li>How does internet access affect <strong>educational outcomes</strong> or <strong>employment rates</strong>?</li>
+<li>What are the <strong>barriers to adoption</strong> in areas that technically have internet infrastructure?</li>
+<li>Could programs like <strong>ACP (Affordable Connectivity Program)</strong> narrow this gap?</li>
+<li>What are the experiences of <strong>Native American reservations</strong>, often overlooked in national datasets?</li>
+</ul>
+<hr>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Map Help</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    .lightbox {
+      cursor: zoom-in;
+      transition: transform 0.2s ease;
+    }
+    .lightbox:hover {
+      transform: scale(1.03);
+    }
+    img {
+      border-radius: 6px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+    }
+    .image-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .image-row img {
+      width: 45%;
+    }
+    .image-center {
+      display: flex;
+      justify-content: center;
+      margin: 1em 0;
+    }
+    .image-center img {
+      width: 50%;
+    }
+    hr {
+      margin: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1> Using the Interactive Map</h1>
+
+  <p>Here's how to make the most of your experience with the interactive digital access map:</p>
+
+  <h2> Zoom In and Out for Detailed Viewing</h2>
+  <p>See both national and local patterns by zooming in or out.</p>
+  <div class="image-row">
+    <img src="4.png" alt="Zoom In" class="lightbox">
+    <img src="5.png" alt="Zoom Out" class="lightbox">
+  </div>
+
+  <hr>
+
+  <h2> Hover for State Data</h2>
+  <p>Hover your cursor over any <strong>state border</strong> to view the overall percentage of households without internet for that state.</p>
+  <div class="image-center">
+    <img src="6.png" alt="Hover State Info" class="lightbox">
+  </div>
+
+  <hr>
+
+  <h2> Hover for Counties</h2>
+  <p>Click into individual <strong>counties</strong> for hyper-local digital access data.</p>
+  <div class="image-center">
+    <img src="7.png" alt="County Click Info" class="lightbox">
+  </div>
+
+  <hr>
+
+  <h2> Toggle State or County Views</h2>
+  <p>Use map controls to show or hide <strong>state</strong> and <strong>county</strong> layers depending on your viewing preference.</p>
+  <div class="image-center">
+    <img src="8.png" alt="Toggle Layers" class="lightbox">
+  </div>
+
+</body>
+</html>
+
